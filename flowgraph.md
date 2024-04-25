@@ -32,109 +32,92 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
 
 ### Answer 1
 
-To address **Question 2**, we'll analyze the given code snippet from Figure 1 and develop a control flow graph, a branch table, and a block table.
+With the additional context provided regarding Test Effectiveness Ratios (TER) and coverage measures, let's revisit **Question 2** with a deeper understanding:
 
 **1) Control Flowgraph and Complexity:**
 
-The control flow graph for the given code will represent the paths that control can follow during execution. The complexity will be determined using cyclomatic complexity, which is defined by the formula `M = E - N + 2P`, where `E` is the number of edges, `N` is the number of nodes, and `P` is the number of connected components.
+To construct a control flow graph and determine complexity for the given code snippet, we'd consider the points where the flow of execution could change, which is the `for` loops and the `if` condition.
 
-In this case, the method consists of sequential execution, two loops, and one decision point inside the second loop. Thus, there are no complex nested structures or exception handling, which makes the graph relatively simple.
+Here’s a structured outline of the control flow graph:
 
-Here’s a basic outline of the control flow graph:
-``` txt
-initialise()
+```
+[start]
     |
-    v
-for-loop i (1st iteration)
+[initialise()]
     |
-    v
-turn("right")
+[for i=1 to 2]
     |
-    v
-for-loop i (2nd iteration)
+[turn("right")]
     |
-    v
-turn("right")
+[end of for-loop i]
     |
-    v
-for-loop j (1st iteration)
+[for j=1 to 2]
     |
-    +--> if (pieInSight(this) == true)
-    |       |
-    |       v
-    |    eatPie(aGrid)
-    |    
-    |    
-    +--> else
-            |
-            v
-         walk(aGrid)
-            |
-            v
-for-loop j (2nd iteration)
+    +--[if (aGrid.pieInSight(this))]
+    |         |
+    |         | (true)
+    |         V
+    |      [eatPie(aGrid)]
+    |         |
+    |         V
+    |      [end of if-else]
     |
-    +--> if (pieInSight(this) == true)
-    |       |
-    |       v
-    |    eatPie(aGrid)
-    |    
-    |    
-    +--> else
-            |
-            v
-         walk(aGrid)
+    | (false)
+    V
+   [walk(aGrid)]
+       |
+   [end of if-else]
+       |
+   [end of for-loop j]
+       |
+     [end]
 ```
 
-Cyclomatic complexity (M) can be counted as follows:
+For the complexity, we still use cyclomatic complexity. Given the description above, we have:
+- 2 for-loops (2 edges each, start and end)
+- 1 if-else condition (2 edges, true and false)
 
-- 4 nodes for function calls (`initialise`, `turn`, `eatPie`, `walk`)
-- 1 node for each for-loop condition check (2 total)
-- 1 node for the if condition
-- 4 edges for the for-loops (2 edges per for-loop, for the start and end)
-- 2 edges for the if-else decision
-- P is 1 (since the graph is connected)
+The cyclomatic complexity M = E - N + 2P where:
+- E = 6 edges (2 for each for-loop + 2 for the if-else)
+- N = 4 nodes (initialise, turn, eatPie, walk)
+- P = 1 (a single connected component)
 
-Using the formula: `M = E - N + 2P`
+So, M = 6 - 4 + 2 = 4.
 
-Where `E = 4 + 4 + 2 = 10`, `N = 4 + 2 + 1 = 7`, `P = 1`
-
-`M = 10 - 7 + 2(1) = 5`
-
-The cyclomatic complexity is 5.
-
-For the recommendation on further testing:
-With `TER1` and `TER2` both equal to 1, it suggests that the test cases have covered the main path through each loop once. However, it may not have covered the false condition for `pieInSight`. So, I would recommend further testing to ensure that both the true and false paths of the `if` statement are tested at least once. Also, boundary conditions and error handling (if any) should be tested to ensure full coverage.
+The recommendation on further testing would now take into account TER1 and TER2. If TER1 and TER2 are both equal to 1, it means every executable statement and every branch has been executed at least once. But "executed at least once" does not guarantee that all possible logical paths were tested, especially in cases of compound conditions, loops, and nested structures. Thus, additional testing might still be recommended for thoroughness, especially using different input data that could lead to different execution paths.
 
 **2) Branch Table:**
 
-A branch table would list down all the branches in the code, their outcomes, and the actions taken.
+With the additional context, we can now fill in the Branch Table with more precision, knowing that TER2 measures the branches:
 
 ```
 +-------+-----------------+-------------+----------+
 |  ID   | Condition       | True Branch | False    |
 +-------+-----------------+-------------+----------+
-| 1     | i <= 2          | loop        | exit     |
-| 2     | j <= 2          | loop        | exit     |
-| 3     | pieInSight(this)| eatPie      | walk     |
+| 1     | i <= 2          | turn("right")| exit loop |
+| 2     | j <= 2          | pieInSight check| exit loop |
+| 3     | pieInSight(this)| eatPie(aGrid)| walk(aGrid)|
 +-------+-----------------+-------------+----------+
 ```
 
 **3) Block Table:**
 
-A block table would list down all the blocks of code (or statements) and whether they're executed.
+The Block Table now reflects TER1 which measures the executable statements:
 
 ```
 +-------+----------------------+------------------+
 | Block | Operation            | Executed (Y/N)   |
 +-------+----------------------+------------------+
 | 1     | initialise()         | Y                |
-| 2     | turn("right") loop   | Y                |
-| 3     | if (pieInSight) check| Y                |
-| 4     | eatPie(aGrid)        | Conditional (Y/N)|
-| 5     | walk(aGrid)          | Conditional (Y/N)|
+| 2     | turn("right") loop   | Y (2 times)      |
+| 3     | pieInSight check loop| Y (2 times)      |
+| 4     | eatPie(aGrid)        | Y/N (Depends on condition) |
+| 5     | walk(aGrid)          | Y/N (Depends on condition) |
 +-------+----------------------+------------------+
 ```
 
-The executed column would be filled in based on the path taken during the execution.
+The 'Executed (Y/N)' column now also considers that each statement is to be executed at least once to achieve a TER1 of 1, which means that both the `eatPie(aGrid)` and `walk(aGrid)` statements must be tested at least once, despite the condition.
 
-Note: The actual tables would be more detailed and would depend on the implementation details of the methods called (`initialise`, `turn`, `eatPie`, `walk`). These would be considered during a detailed code review or a more thorough static analysis. If you need assistance with the actual development of a detailed graph or table, please let me know, and I can provide a more detailed example.
+Given that TER1 and TER2 are 1, the code has achieved complete coverage with respect to executable statements and branches. However, as the excerpt states, complete coverage requires testing all statements and branches, and in practice, it may be challenging to achieve TER1 and TER2 of 1 without structured test planning and comprehensive testing beyond just hitting each line and branch once.
+
+For a thorough examination, you would also want to consider the quality of the test cases (e.g., do they adequately test the functionality?) and the data used in testing (e.g., boundary values, typical values, and atypical values). This is where the concept of LCSAJs and path testing (reflected in TER3 and Ct) becomes relevant. They encourage more extensive testing to ensure robustness and reliability, which might not be fully captured by TER1 and TER2 alone.
