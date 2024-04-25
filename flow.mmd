@@ -1,0 +1,24 @@
+graph TD;
+    initialise(Initialise)
+    fori(For loop i)
+    condi("i <= 2?")
+    turn(Turn Right)
+    forj(For loop j)
+    condj("j <= 2?")
+    pieCheck{Pie in Sight?}
+    eatPie(Eat Pie)
+    walk(Walk)
+    endCode(End)
+    
+    initialise --> fori
+    fori --> condi
+    condi -- Yes --> turn
+    turn --> condi
+    condi -- No --> forj
+    forj --> condj
+    condj -- Yes --> pieCheck
+    pieCheck -- Yes --> eatPie
+    eatPie --> condj
+    pieCheck -- No --> walk
+    walk --> condj
+    condj -- No --> endCode

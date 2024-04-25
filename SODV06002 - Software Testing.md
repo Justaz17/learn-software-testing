@@ -57,20 +57,14 @@ There are no additional requirements for this paper.
 
 **Question 2                  (Total 33 Marks)** 
 
-1) Develop a control flowgraph for the code shown in Figure 1 below and determine the complexity. Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.  **(11 marks)** 
-1) Develop the branch table for the code shown in Figure 1 below. 
-
-**(11 marks)** 
-
-3) Develop the block table for the code shown in Figure 1 below. 
-
-**(11 marks)** 
-
+1. Develop a control flowgraph for the code shown in Figure 1 below and determine the complexity. Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.  **(11 marks)**
+2. Develop the branch table for the code shown in Figure 1 below. **(11 marks)**
+3. Develop the block table for the code shown in Figure 1 below. **(11 marks)**
 
 ```java
 public void walkFirstColOfGridEatingPies(Grid aGrid)
 {
-    initialise ();
+    initialize();
     for (int i=1; i <= 2; i++)
     {
         turn ("right");
@@ -90,7 +84,7 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
 }
 ```
 
-> Figue 1
+> Figure 1
 
 **Question 3   (Total 33 Marks)**  
 
