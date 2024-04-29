@@ -3,27 +3,26 @@
 
 **SUMMER** **EXAMINATION 2022**
 
-SODV06002 – Software Testing   Page 1 of 4 Summer Exam 
+SODV06002 – Software Testing
 
-**MODULE:  PROGRAMME(S):**  
+**MODULE:  PROGRAMME(S):**
 
-LC\_KGDVM\_KTH 
+LC\_KGDVM\_KTH
 
-LC\_KSFDM\_KMY LC\_KSFDM\_ITH LC\_KISYM\_JMY 
+LC\_KSFDM\_KMY LC\_KSFDM\_ITH LC\_KISYM\_JMY
 
-LC\_KISYM\_KMY 
+LC\_KISYM\_KMY
 
-LC\_KIDMM\_KMY LC\_KCPTM\_JMY 
+LC\_KIDMM\_KMY LC\_KCPTM\_JMY
 
-**YEAR OF STUDY:  EXAMINER(S):** 
+**YEAR OF STUDY:  EXAMINER(S):**
 
-SODV06001 Software Testing 
+SODV06001 Software Testing:
 
-Bachelor of Science (Honours) Games Design and Development 
-
-Bachelor of Science (Honours) Software Development Higher Certificate in Science Software Development Bachelor of Science Internet Systems Development Bachelor of Science (Honours) Internet Systems Development 
-
-Bachelor of Science (Honours) Interactive Digital Media Bachelor of Science Computing 
+- Bsc. (Honours) Games Design and Development
+- Bsc. (Honours) Software Development Higher Certificate in Science Software Development
+- Bsc. (Honours) Internet Systems Development Bachelor of Science
+- Bsc. (Honours) Interactive Digital Media Bachelor of Science Computing
 
 2 
 
@@ -128,8 +127,12 @@ public class OvertimeHoursProcessor {
 ```
 
 1) Explain what a stub is and why you need to utilize stubs to unit test code.  **(8 Marks)** 
-2) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)** 
-3) Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection. 
+
+A stub is a piece of code that simulates the behaviour of a component that the system under test depends on.  For example the component may not be available or may have not been implemented yet.  It may not be necessary to use a real implementation of the component such as a database or web service in a unit test to test a system or piece of the system/code a stub would be suitable.
+
+1) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)** 
+
+2) Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection. 
 
 **(13 Marks)** 
 
