@@ -85,7 +85,7 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
 
 > Figure 1
 
-**Question 3   (Total 33 Marks)**  
+## **Question 3   (Total 33 Marks)**  
 
 An OvertimeHoursProcessor component has a method called processOvertimeHours which contains business logic about processing of overtime hours worked. The code for the processOvertimeHours is shown in Figure 2 below. 
 
@@ -101,20 +101,24 @@ public class OvertimeHoursProcessor {
         //First piece of business logic is to check the overtimeHoursFile has
         // valid extension.
         if (overtimeHoursFile.endsWith(".data"))
-
+        {
             //Next piece of business logic is to check that it is a Saturday
             // as hours worked thia day are overtime rate. 
             Calendar cal = Calendar.getInstance();
-        if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
-        {
-            readTheOvertimeHoursFile();
-            return true;
+            if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
+            {
+                readTheOvertimeHoursFile();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-    else
+        else
         {
             return false;
         }
-
     }
 
     public void readTheOvertimeHoursFile() {
@@ -130,9 +134,87 @@ public class OvertimeHoursProcessor {
 
 A stub is a piece of code that simulates the behaviour of a component that the system under test depends on.  For example the component may not be available or may have not been implemented yet.  It may not be necessary to use a real implementation of the component such as a database or web service in a unit test to test a system or piece of the system/code a stub would be suitable.
 
-1) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)** 
+2) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)** 
 
-2) Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection. 
+```java
+package com.mycompany.overtimehoursprocessor;
+
+/**
+ * Interface for the OvertimeHoursFileProcessor
+ */
+public interface OvertimeHoursFileProcessor {
+
+    public String getOvertimeHoursFile();
+    public void setOvertimeHoursFile(String overtimeHoursFile);
+
+    public void readTheOvertimeHoursFile();
+}
+
+/**
+ * OvertimeHoursFileProcessorStub
+ */
+import org.apache.commons.logging.Log;
+
+public class OvertimeHoursFileProcessorStub implements OvertimeHoursFileProcessor {
+
+    private static final Log log = LogFactory.getLog(OvertimeHoursFileProcessorStub.class);
+    private String overtimeHoursFile;
+
+
+    public String getOvertimeHoursFile() {
+        return "overtimeHoursFile";
+    }
+
+    public void setOvertimeHoursFile(String overtimeHoursFile) {
+    }
+
+    public void readTheOvertimeHoursFile() {
+        log.info("Stub for Reading the overtime hours file");
+    }
+}
+
+import java.util.Calendar;
+
+/**
+ * Refactored OvertimeHoursProcessor
+ 
+ */
+public class OvertimeHoursProcessor {
+
+    private final OvertimeHoursFileProcessor overtimeHoursFileProcessor;
+
+    public OvertimeHoursProcessor(OvertimeHoursFileProcessor overtimeHoursFileProcessor) {
+        this.overtimeHoursFileProcessor = overtimeHoursFileProcessor;
+    }
+
+
+    public Boolean processOvertimeHours() {
+        //First piece of business logic is to check the overtimeHoursFile has
+        // valid extension.
+        if (overtimeHoursFileProcessor.getOvertimeHoursFile().endsWith(".data"))
+        {
+            //Next piece of business logic is to check that it is a Saturday
+            // as hours worked this day are overtime rate. 
+            Calendar cal = Calendar.getInstance();
+            if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
+            {
+                overtimeHoursFileProcessor.readTheOvertimeHoursFile();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+```java
+
+1) Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection. 
 
 **(13 Marks)** 
 
