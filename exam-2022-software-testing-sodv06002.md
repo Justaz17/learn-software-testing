@@ -103,7 +103,7 @@ public class OvertimeHoursProcessor {
         if (overtimeHoursFile.endsWith(".data"))
         {
             //Next piece of business logic is to check that it is a Saturday
-            // as hours worked thia day are overtime rate. 
+            // as hours worked this day are overtime rate.
             Calendar cal = Calendar.getInstance();
             if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
             {
@@ -134,7 +134,7 @@ public class OvertimeHoursProcessor {
 
 A stub is a piece of code that simulates the behaviour of a component that the system under test depends on.  For example the component may not be available or may have not been implemented yet.  It may not be necessary to use a real implementation of the component such as a database or web service in a unit test to test a system or piece of the system/code a stub would be suitable.
 
-2) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)** 
+2) Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.   **(12 Marks)**
 
 ```java
 package com.mycompany.overtimehoursprocessor;
@@ -146,7 +146,6 @@ public interface OvertimeHoursFileProcessor {
 
     public String getOvertimeHoursFile();
     public void setOvertimeHoursFile(String overtimeHoursFile);
-
     public void readTheOvertimeHoursFile();
 }
 
@@ -168,6 +167,10 @@ public class OvertimeHoursFileProcessorStub implements OvertimeHoursFileProcesso
     public void setOvertimeHoursFile(String overtimeHoursFile) {
     }
 
+    public boolean isOvertimeHoursFileValid() {
+        return true;
+    }
+
     public void readTheOvertimeHoursFile() {
         log.info("Stub for Reading the overtime hours file");
     }
@@ -177,7 +180,6 @@ import java.util.Calendar;
 
 /**
  * Refactored OvertimeHoursProcessor
- 
  */
 public class OvertimeHoursProcessor {
 
@@ -187,36 +189,49 @@ public class OvertimeHoursProcessor {
         this.overtimeHoursFileProcessor = overtimeHoursFileProcessor;
     }
 
-
     public Boolean processOvertimeHours() {
-        //First piece of business logic is to check the overtimeHoursFile has
-        // valid extension.
-        if (overtimeHoursFileProcessor.getOvertimeHoursFile().endsWith(".data"))
-        {
-            //Next piece of business logic is to check that it is a Saturday
-            // as hours worked this day are overtime rate. 
-            Calendar cal = Calendar.getInstance();
-            if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
-            {
-                overtimeHoursFileProcessor.readTheOvertimeHoursFile();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
+        if (!overtimeHoursFileProcessor.isOvertimeHoursFileValid())
             return false;
-        }
+
+        Calendar cal = Calendar.getInstance();
+        if (!cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY))
+            return false;
+
+        overtimeHoursFileProcessor.readTheOvertimeHoursFile();
+        return true;
     }
+}
+```
+
+### Part 3 - (13 Marks)
+
+Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection.
 
 ```java
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
-1) Write code or pseudocode for three unit tests to test the business logic in the processOvertimeHours method. Write code or pseudocode for a configurable stub to be used by your tests utilising constructor injection. 
+public class OvertimeHoursProcessorTest {
 
-**(13 Marks)** 
+    @Test
+    public void testProcessOvertimeHoursWithValidFile() {
+        OvertimeHoursFileProcessorStub stub = new OvertimeHoursFileProcessorStub();
+        stub.setOvertimeHoursFile("valid-file.data");
+        OvertimeHoursProcessor processor = new OvertimeHoursProcessor(stub);
+        assertTrue(processor.processOvertimeHours());
+    }
+
+    @Test
+    public void testProcessOvertimeHoursWithInvalidFile() {
+        OvertimeHoursFileProcessorStub stub = new OvertimeHoursFileProcessorStub();
+        stub.setOvertimeHoursFile("in-valid-file.txt");
+        OvertimeHoursProcessor processor = new OvertimeHoursProcessor(stub);
+        assertFalse(processor.processOvertimeHours());
+    }
+}
+```
+
 
 **Question 4    Total 33 Marks**  
 
