@@ -28,23 +28,63 @@ SODV06001 Software Testing:
 
 Mr. Brendan Watson  (Internal) Mr. Andrew Shields  (External) 
 
-SODV06002 – Software Testing   Page 4 of 4 Summer Exam 
+TIME ALLOWED: 2 HOURS
 
-**TIME ALLOWED:   2 HOURS** 
+INSTRUCTIONS:  Answer any 3 questions. All questions carry equal
 
-**INSTRUCTIONS:  Answer any 3 questions. All questions carry equal** 
-
-**marks and marks will be scaled to 100.**  
+**marks and marks will be scaled to 100.**
 
 PLEASE DO NOT TURN OVER THIS PAGE UNTIL YOU ARE INSTRUCTED TO DO SO. The use of programmable or text storing calculators is expressly forbidden. Please note that where a candidate answers more than the required number of questions, the examiner will mark all questions attempted and then select the highest scoring ones.  
 
-There are no additional requirements for this paper. 
+There are no additional requirements for this paper.
 
 ## Question 1 - (Total 33 Marks)
 
 ### Part 1 - (11 Marks)
 
 Explain your understanding of the goal of software testing and the implications of the goal of software testing?
+
+#### Answer based on ... internet
+
+Software testing is a critical part of the software development process that involves evaluating a software application to identify any defects, errors, or discrepancies from expected behavior. The goal of software testing is to ensure that the software functions correctly and meets the specified requirements, as well as to verify its reliability, performance, security, and usability.
+
+Here are some key aspects of the goal of software testing and its implications:
+
+1. **Quality Assurance**: Software testing helps in ensuring the quality of the software by detecting and rectifying bugs and defects early in the development cycle. This leads to a better, more reliable product.
+
+2. **Verification and Validation**: Testing is used to verify that the software meets its requirements (verification) and to validate that it fulfills the needs and expectations of the users (validation).
+
+3. **Risk Mitigation**: By identifying issues and vulnerabilities in the software, testing helps mitigate risks associated with deployment and use, such as crashes, security breaches, and data loss.
+
+4. **Improving Software Design**: Testing can reveal weaknesses or limitations in the software design, prompting improvements or redesigns that can enhance overall performance and maintainability.
+
+5. **Cost-Effectiveness**: While testing can add to the cost and time of development, it ultimately saves money by catching issues early and avoiding costly post-release problems such as patching, legal issues, or customer dissatisfaction.
+
+6. **Compliance**: In many industries, software must comply with legal, regulatory, or industry standards. Testing ensures that the software adheres to these requirements.
+
+7. **User Confidence and Satisfaction**: Properly tested software is more reliable and user-friendly, which leads to greater user confidence and satisfaction.
+
+8. **Continuous Improvement**: Software testing is a continuous process that encourages improvement and iteration, leading to the development of better products over time.
+
+In summary, the goal of software testing is to ensure that software functions correctly, meets specified requirements, and provides a positive user experience. It plays a crucial role in risk mitigation, quality assurance, and continuous improvement throughout the software development lifecycle.
+
+#### Answer based on Lecturer Notes
+
+Software testing aims to increase users' confidence that the software system behaves correctly under all circumstances of interest. The process of software testing involves verifying the software's performance against specified requirements and ensuring that it can handle various scenarios and edge cases.
+
+The purpose of testing is not to prove that a program has bugs but to find defects and assess the system's quality. While testing can identify the presence of defects, it cannot prove their absence, as there may still be undiscovered bugs.
+
+The implications of the goal of software testing include:
+
+- **Acceptable Level of Confidence**: An acceptable level of confidence must be defined based on how confident the user needs to be that the software works. This can be stated numerically (e.g., the number of tests successfully completed) or based on residual defect discovery rate (e.g., no Priority 1 bugs found in the last 5 days of testing).
+
+- **Correct Behavior Definition**: Correct behavior must be clearly defined in terms of what the software should do, based on functional requirements. This requires comparing actual behavior with specified behavior and understanding use cases and scenarios.
+
+- **Circumstances of Interest**: Circumstances of interest must be defined to test the software realistically within the context in which it will operate. This involves predicting how the software will be used, considering different user patterns, usage spikes (e.g., processing 10,000 orders each day during December and 1,000 each day for the rest of the year), and projected growth of the business.
+
+- **Testing Process**: The testing process includes conducting tests, documenting the results, analyzing the process, making corrections, and repeating the process as needed.
+
+Overall, the goal of software testing is to ensure that the system behaves correctly under various conditions, providing a reliable and satisfactory experience for users while identifying and addressing defects as early as possible in the development process.
 
 ### Part 2 - (11 Marks)
 
@@ -85,7 +125,7 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
 
 > Figure 1
 
-## Question 3 - (Total 33 Marks)
+## Question 3 - Stubs - (Total 33 Marks)
 
 An OvertimeHoursProcessor component has a method called processOvertimeHours which contains business logic about processing of overtime hours worked. The code for the processOvertimeHours is shown in Figure 2 below.
 
