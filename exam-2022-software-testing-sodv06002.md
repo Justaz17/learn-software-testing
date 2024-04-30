@@ -132,6 +132,15 @@ $Complexity = 12 - 10 + 2 = 4$
 
  Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.
 
+***A ANSWER FROM INTERNET***
+Given the testing effectiveness ratios (TER1 = 1 and TER2 = 1), which indicate full coverage in their respective scopes, it is still advisable to consider further testing due to the following reasons:
+
+Boundary and Edge Cases: TER1 and TER2 might not cover all edge cases and boundary conditions, which could reveal additional issues.
+Integration Testing: Ensure that the interaction between Grid and PieEater is tested to uncover potential issues in the combined functionality.
+Real-World Scenarios: Tests may not fully capture real-world usage and user behavior, which could lead to unexpected issues.
+Different Configurations: Testing the Grid class with various row and column sizes can help identify potential problems related to different grid shapes and sizes.
+In conclusion, while the current testing results suggest effective coverage, further testing is recommended to enhance the robustness and reliability of the code.
+
 ### Part 2 - (11 Marks)
 
 Develop the branch table for the code shown in Figure 1 below.
