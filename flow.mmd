@@ -1,24 +1,24 @@
-graph TD;
-    initialise(Initialise)
-    fori(For loop i)
-    condi("i <= 2?")
-    turn(Turn Right)
-    forj(For loop j)
-    condj("j <= 2?")
-    pieCheck{Pie in Sight?}
-    eatPie(Eat Pie)
-    walk(Walk)
-    endCode(End)
+flowchart TD;
+    initialise([initialise])
+    Loop1((Loop i))
+    If1{"i <= 2?"}
+    codeTurn([Turn Right])
+    Loop2((For loop j))
+    If2{"j <= 2?"}
+    codePieCheck{Pie in Sight?}
+    codeEatPie([Eat Pie])
+    codeWalk([Walk])
+    endCode([End])
     
-    initialise --> fori
-    fori --> condi
-    condi -- Yes --> turn
-    turn --> condi
-    condi -- No --> forj
-    forj --> condj
-    condj -- Yes --> pieCheck
-    pieCheck -- Yes --> eatPie
-    eatPie --> condj
-    pieCheck -- No --> walk
-    walk --> condj
-    condj -- No --> endCode
+    initialise --> Loop1
+    Loop1 --> If1
+    If1 -- No --> Loop2
+    If1 -- Yes --> codeTurn
+    codeTurn --> Loop1
+    Loop2 --> If2
+    If2 -- No --> endCode
+    If2 -- Yes --> codePieCheck
+    codePieCheck -- No --> codeWalk
+    codePieCheck -- Yes --> codeEatPie
+    codeEatPie --> Loop2
+    codeWalk --> Loop2

@@ -1,40 +1,13 @@
 ﻿
-# TECHNOLOGICAL UNIVERSITY OF THE SHANNON: MIDLANDS MIDWEST
+# Software Testing - Exam Paper - 2022 - Summer
 
-**SUMMER** **EXAMINATION 2022**
+**Time Allowed**: 2 hours
 
-SODV06002 – Software Testing
+**Instructions**:  Answer any 3 questions. All questions carry equal
 
-**MODULE:  PROGRAMME(S):**
+**Marks and marks will be scaled to 100.**
 
-LC\_KGDVM\_KTH
-
-LC\_KSFDM\_KMY LC\_KSFDM\_ITH LC\_KISYM\_JMY
-
-LC\_KISYM\_KMY
-
-LC\_KIDMM\_KMY LC\_KCPTM\_JMY
-
-**YEAR OF STUDY:  EXAMINER(S):**
-
-SODV06001 Software Testing:
-
-- Bsc. (Honours) Games Design and Development
-- Bsc. (Honours) Software Development Higher Certificate in Science Software Development
-- Bsc. (Honours) Internet Systems Development Bachelor of Science
-- Bsc. (Honours) Interactive Digital Media Bachelor of Science Computing
-
-2 
-
-Mr. Brendan Watson  (Internal) Mr. Andrew Shields  (External) 
-
-TIME ALLOWED: 2 HOURS
-
-INSTRUCTIONS:  Answer any 3 questions. All questions carry equal
-
-**marks and marks will be scaled to 100.**
-
-PLEASE DO NOT TURN OVER THIS PAGE UNTIL YOU ARE INSTRUCTED TO DO SO. The use of programmable or text storing calculators is expressly forbidden. Please note that where a candidate answers more than the required number of questions, the examiner will mark all questions attempted and then select the highest scoring ones.  
+The use of programmable or text storing calculators is expressly forbidden. Please note that where a candidate answers more than the required number of questions, the examiner will mark all questions attempted and then select the highest scoring ones.  
 
 There are no additional requirements for this paper.
 
@@ -90,15 +63,13 @@ Overall, the goal of software testing is to ensure that the system behaves corre
 
 Do you think scenarios and use cases can be used for software testing, explain your answer?  
 
+Scenarios and use cases can be used for software testing as they provide a structured approach to defining the expected behavior of the software system under different conditions. Scenarios and use cases help in identifying the various interactions between the user and the system, as well as the system's responses to different inputs and actions.  
+
 ### Part 3 - (11 Marks)
 
-Explain your understanding of the big bang approach to software testing. Do you think you will ever use this approach in the future, explain your answer? 
+Explain your understanding of the big bang approach to software testing. Do you think you will ever use this approach in the future, explain your answer?
 
 ## Question 2 - (Total 33 Marks)
-
-1. Develop a control flowgraph for the code shown in Figure 1 below and determine the complexity. Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.  **(11 marks)**
-2. Develop the branch table for the code shown in Figure 1 below. **(11 marks)**
-3. Develop the block table for the code shown in Figure 1 below. **(11 marks)**
 
 ```java
 public void walkFirstColOfGridEatingPies(Grid aGrid)
@@ -113,11 +84,11 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
     {
         if(aGrid.pieInSight (this) == true)
         {
-        eatPie (aGrid) ;
+            eatPie(aGrid);
         }
         else
         {
-            walk (aGrid) ;
+            walk(aGrid);
         }
     }
 }
@@ -125,12 +96,54 @@ public void walkFirstColOfGridEatingPies(Grid aGrid)
 
 > Figure 1
 
+### Part 1 - (11 Marks)
+
+Develop a control flow-graph for the code shown in Figure 1 below and determine the complexity.
+
+```mermaid
+flowchart TD;
+    initialise([initialise])
+    Loop1((Loop i))
+    If1{"i <= 2?"}
+    codeTurn([Turn Right])
+    Loop2((For loop j))
+    If2{"j <= 2?"}
+    codePieCheck{Pie in Sight?}
+    codeEatPie([Eat Pie])
+    codeWalk([Walk])
+    endCode([End])
+    
+    initialise --> Loop1
+    Loop1 --> If1
+    If1 -- No --> Loop2
+    If1 -- Yes --> codeTurn
+    codeTurn --> Loop1
+    Loop2 --> If2
+    If2 -- No --> endCode
+    If2 -- Yes --> codePieCheck
+    codePieCheck -- No --> codeWalk
+    codePieCheck -- Yes --> codeEatPie
+    codeEatPie --> Loop2
+    codeWalk --> Loop2
+```
+
+$Complexity = \sum Edges - \sum Nodes + 2$  
+$Complexity = 12 - 10 + 2 = 4$
+
+ Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.
+
+
+1. Develop the branch table for the code shown in Figure 1 below. **(11 marks)**
+   
+2. Develop the block table for the code shown in Figure 1 below. **(11 marks)**
+
+
 ## Question 3 - Stubs - (Total 33 Marks)
 
 An OvertimeHoursProcessor component has a method called processOvertimeHours which contains business logic about processing of overtime hours worked. The code for the processOvertimeHours is shown in Figure 2 below.
 
 ```java
-package com.mycompany.overtimehoursprocessor;
+package io.github.username.exam.code;
 import java.util.Calendar;
 
 public class OvertimeHoursProcessor {
@@ -166,8 +179,8 @@ public class OvertimeHoursProcessor {
     }
     /* ... */
 }
-// This code is under conatruction and is not currently needed
-// to unit test the business logic in the processOvertimeMours method.
+// This code is under construction  and is not currently needed
+// to unit test the business logic in the processOvertimeHours method.
 ```
 
 > Figure 2
@@ -183,7 +196,7 @@ A stub is a piece of code that simulates the behaviour of a component that the s
 Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.
 
 ```java
-package com.mycompany.overtimehoursprocessor;
+package io.github.username.exam.code;
 
 /**
  * Interface for the OvertimeHoursFileProcessor
@@ -289,3 +302,30 @@ Explain your understanding of equivalence partitioning.
 A software system to accept new stock items in a steel yard accepts the item name followed by a list of different lengths the steel comes in. The specification states that the item name is to be alphabetic 5 to 10 characters long. Each length in metres must be in the range of 1 to 7, whole numbers only. The lengths are to be entered in descending order (biggest length first) with a maximum of 3 lengths allowed to be entered for each item and whole numbers only. A comma is to be used to separate the item name from the lengths and a comma will be used to separate each length and the enter key to be pressed after the last length is entered
 
 Derive the equivalence classes and determine black box test cases based on these and utilise boundary value analysis.
+
+## Paper College Details
+
+College: Technological University Of The Shannon: Midlands Midwest  
+Module Title: Software Testing  
+Module Code: SODV06002  
+Year of Study: 2  
+Year: 2022 - Summer  
+
+### Programmes
+
+| Code           | Programme                                          |
+|----------------|----------------------------------------------------|
+| LC\_KGDVM\_KTH | Bsc. (Honours) Games Design and Development        |
+| LC\_KSFDM\_KMY | Bsc. (Honours) Software Development                |
+| LC\_KSFDM\_ITH | Higher Certificate in Science Software Development |
+| LC\_KISYM\_JMY | Bsc. (Honours) Internet Systems Development        |
+| LC\_KISYM\_KMY | Bachelor of Science Internet Systems Development   |
+| LC\_KIDMM\_KMY | Bsc. (Honours) Interactive Digital Media           |
+| LC\_KCPTM\_JMY | Bsc. Computing                                     |
+
+### Examiners
+
+| Examiner           |          |
+|--------------------|----------|
+| Mr. Brendan Watson | Internal |
+| Mr. Andrew Shields | External |
