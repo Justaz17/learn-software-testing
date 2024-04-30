@@ -238,7 +238,7 @@ A stub is a piece of code that simulates the behaviour of a component that the s
 
 ### Part 2 - (12 Marks)
 
-Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write code or pseudocode. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.
+Refactor the OvertimeHoursProcessor to make it testable by introducing a layer of indirection to avoid the dependency i.e. write **code** or **pseudocode**. You refactoring should include adding an interface which will allow use of a configurable stub in the unit tests.
 
 ```java
 package io.github.username.exam.code;
