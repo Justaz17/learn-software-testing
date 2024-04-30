@@ -104,10 +104,10 @@ Develop a control flow-graph for the code shown in Figure 1 below and determine 
 flowchart TD;
     initialise([initialise])
     Loop1((Loop i))
-    If1{"i <= 2?"}
+    If1{"i <= 2"}
     codeTurn([Turn Right])
     Loop2((For loop j))
-    If2{"j <= 2?"}
+    If2{"j <= 2"}
     codePieCheck{Pie in Sight?}
     codeEatPie([Eat Pie])
     codeWalk([Walk])
@@ -132,11 +132,32 @@ $Complexity = 12 - 10 + 2 = 4$
 
  Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.
 
+### Part 2 - (11 Marks)
 
-1. Develop the branch table for the code shown in Figure 1 below. **(11 marks)**
-   
-2. Develop the block table for the code shown in Figure 1 below. **(11 marks)**
+Develop the branch table for the code shown in Figure 1 below.
 
+Branch Table
+
+| Branch No. | From Line # | From Line                             | To Line # | To Line                               | Branch Type        |
+|:-----------|:------------|:--------------------------------------|:----------|:--------------------------------------|:-------------------|
+| 1          | 3           | `initialize();`                       | 4         | `for (int i=1; i <= 2; i++)`          | Direct             |
+| 1          | 4           | `for (int i=1; i <= 2; i++)`          | 6         | `turn ("right");`                     | Conditional Loop   |
+| 2          | 4           | `for (int i=1; i <= 2; i++)`          | 9         | `for (int j=1; j <= 2; j++)`          | Conditional Loop   |
+| 3          | 9           | `for (int j=1; j <= 2; j++)`          | 11        | `if(aGrid.pieInSight (this) == true)` | Conditional Loop   |
+| 4          | 9           | `for (int j=1; j <= 2; j++)`          | 20        | `}` i.e. END                          | Conditional Loop   |
+| 5          | 11          | `if(aGrid.pieInSight (this) == true)` | 13        | `eatPie(aGrid);`                      | Conditional Branch |
+| 6          | 11          | `if(aGrid.pieInSight (this) == true)` | 17        | `walk(aGrid);`                        | Conditional Branch |
+
+### Part 3 - (11 Marks)
+
+Develop the block table for the code shown in `Figure 1`.
+
+| Block Number | Start Line | Start Line Code                      | End Line | End Line Code   |
+|--------------|------------|--------------------------------------|----------|-----------------|
+| 1            | 2          | `initialize();`                      | 2        | `initialize();` |
+| 2            | 4          | `for (int i = 1; i <= 2; i++)`       | 7        | `}`             |
+| 3            | 5          | `for (int j = 1; j <= 2; j++)`       | 19       | `}`             |
+| 4            | 6          | `if(aGrid.pieInSight(this) == true)` | 18       | `walk(aGrid);`  |
 
 ## Question 3 - Stubs - (Total 33 Marks)
 
