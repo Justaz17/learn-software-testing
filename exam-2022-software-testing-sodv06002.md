@@ -87,23 +87,23 @@ In conclusion, while the big bang approach may be suitable for small projects, i
 ## Question 2 - (Total 33 Marks)
 
 ```java
-public void walkFirstColOfGridEatingPies(Grid aGrid)
+public void walkFirstColOfGridEatingPies(Grid grid)
 {
     initialize();
-    for (int i=1; i <= 2; i++)
+    for(int i = 1; i <= 2; i++)
     {
-        turn ("right");
+        turn("right");
     }
 
-    for (int j=1; j <= 2; j++)
+    for(int j = 1; j <= 2; j++)
     {
-        if(aGrid.pieInSight (this) == true)
+        if(grid.pieInSight(this) == true)
         {
-            eatPie(aGrid);
+            eatPie(grid);
         }
         else
         {
-            walk(aGrid);
+            walk(grid);
         }
     }
 }
@@ -142,10 +142,16 @@ flowchart TD;
     codeWalk --> Loop2
 ```
 
-$Complexity = \sum Edges - \sum Nodes + 2$  
-$Complexity = 12 - 10 + 2 = 4$
+$M = E - N + 2$  
+where:
 
- Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.
+- $M$ is the complexity
+- $E$ is the number of edges
+- $N$ is the number of nodes
+
+$M = 12 - 10 + 2 = 4$
+
+Suppose software testing has been employed so that TER1 = 1 and TER2 = 1, would you recommend further testing and explain your answer.
 
 ***A ANSWER FROM INTERNET***
 Given the testing effectiveness ratios (TER1 = 1 and TER2 = 1), which indicate full coverage in their respective scopes, it is still advisable to consider further testing due to the following reasons:
@@ -158,30 +164,50 @@ In conclusion, while the current testing results suggest effective coverage, fur
 
 ### Part 2 - (11 Marks)
 
-Develop the branch table for the code shown in Figure 1 below.
+#### Lines
 
-Branch Table
+No need to number blank lines or lines with curly braces.
 
-| Branch No. | From Line # | From Line                             | To Line # | To Line                               | Branch Type        |
-|:-----------|:------------|:--------------------------------------|:----------|:--------------------------------------|:-------------------|
-| 1          | 3           | `initialize();`                       | 4         | `for (int i=1; i <= 2; i++)`          | Direct             |
-| 1          | 4           | `for (int i=1; i <= 2; i++)`          | 6         | `turn ("right");`                     | Conditional Loop   |
-| 2          | 4           | `for (int i=1; i <= 2; i++)`          | 9         | `for (int j=1; j <= 2; j++)`          | Conditional Loop   |
-| 3          | 9           | `for (int j=1; j <= 2; j++)`          | 11        | `if(aGrid.pieInSight (this) == true)` | Conditional Loop   |
-| 4          | 9           | `for (int j=1; j <= 2; j++)`          | 20        | `}` i.e. END                          | Conditional Loop   |
-| 5          | 11          | `if(aGrid.pieInSight (this) == true)` | 13        | `eatPie(aGrid);`                      | Conditional Branch |
-| 6          | 11          | `if(aGrid.pieInSight (this) == true)` | 17        | `walk(aGrid);`                        | Conditional Branch |
+| # | Code                                |
+|---|-------------------------------------|
+| 1 | `initialize();`                     |
+| 2 | `for (int i = 1; i <= 2; i++)`      |
+| 3 | `turn("right");`                    |
+| 4 | `for (int j = 1; j <= 2; j++)`      |
+| 5 | `if(grid.pieInSight(this) == true)` |
+| 6 | `eatPie(grid);`                     |
+| 7 | `walk(grid);`                       |
+| 8 | **END**                             |
+
+Develop the branch table for the code shown in Figure 1.
+
+#### Branch Table
+
+| Branch No. | From Line # | To Line # | Branch Type        | From Line                                     | To Line                               |
+|:-----------|:------------|:----------|:-------------------|:----------------------------------------------|:--------------------------------------|
+| 1          | 1           | 2         | Unconditional      | `initialize();`                               | `for (int i=1; i <= 2; i++)`          |
+| 2          | 2           | 3         | Conditional Loop   | `for (int i=1; i <= 2; i++)` is True          | `turn ("right");`                     |
+| 3          | 2           | 4         | Conditional Loop   | `for (int i=1; i <= 2; i++)` is False         | `for (int j=1; j <= 2; j++)`          |
+| 4          | 3           | 2         | Unconditional      | `turn ("right");`                             | `for (int i=1; i <= 2; i++)`          |
+| 5          | 4           | 5         | Conditional Loop   | `for (int j=1; j <= 2; j++)` is True          | `if(aGrid.pieInSight (this) == true)` |
+| 6          | 4           | 8         | Conditional Loop   | `for (int j=1; j <= 2; j++)` is False         | **END**                               |
+| 7          | 5           | 6         | Conditional Branch | `if(grid.pieInSight (this) == true)` is True  | `eatPie(aGrid);`                      |
+| 8          | 6           | 7         | Conditional Branch | `if(grid.pieInSight (this) == true)` is False | `walk(aGrid);`                        |
+| 9          | 6           | 4         | Unconditional      | `eatPie(grid);`                               | `for (int j=1; j <= 2; j++)`          |
+| 10         | 7           | 4         | Unconditional      | `walk(grid);`                                 | `for (int j=1; j <= 2; j++)`          |
 
 ### Part 3 - (11 Marks)
 
 Develop the block table for the code shown in `Figure 1`.
 
-| Block Number | Start Line | Start Line Code                      | End Line | End Line Code   |
-|--------------|------------|--------------------------------------|----------|-----------------|
-| 1            | 2          | `initialize();`                      | 2        | `initialize();` |
-| 2            | 4          | `for (int i = 1; i <= 2; i++)`       | 7        | `}`             |
-| 3            | 5          | `for (int j = 1; j <= 2; j++)`       | 19       | `}`             |
-| 4            | 6          | `if(aGrid.pieInSight(this) == true)` | 18       | `walk(aGrid);`  |
+#### Block Table
+
+| Block Number | Start Line | End Line | Start Line Code                      | End Line Code    |
+|--------------|------------|----------|--------------------------------------|------------------|
+| 1            | 1          | 1        | `initialize();`                      | `...`            |
+| 2            | 2          | 3        | `for (int i = 1; i <= 2; i++)`       | `turn("right");` |
+| 3            | 4          | 7        | `for (int j = 1; j <= 2; j++)`       | `walk(grid);`    |
+| 4            | 5          | 7        | `if(aGrid.pieInSight(this) == true)` | `walk(aGrid);`   |
 
 ## Question 3 - Stubs - (Total 33 Marks)
 
